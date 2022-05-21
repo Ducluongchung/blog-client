@@ -5,6 +5,7 @@ import { modalState$ } from "../../redux/selectors";
 import { hideModal } from "../../redux/actions";
 import useStyle from "./style";
 import FileBase64 from "react-file-base64";
+import * as actions from "../../redux/actions";
 
 export default function CreatePostModal() {
   const [data, setData] = useState({
@@ -27,7 +28,8 @@ export default function CreatePostModal() {
   }, [dispatch]);
 
   const handleCreatePost = () => {
-    console.log(data, "data");
+    dispatch(actions.createPost.createPostRequest(data));
+    handleCloseModal();
   };
 
   const body = (
